@@ -24,7 +24,7 @@ in
 
 python310Packages.buildPythonApplication rec {
   pname = "nwg-shell-config";
-  version = "0.5.34";
+  version = "0.5.35";
 
   src = fs.toSource {
     root = ./.;
