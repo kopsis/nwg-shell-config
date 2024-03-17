@@ -55,6 +55,15 @@ python310Packages.buildPythonApplication rec {
 
   dontWrapGApps = true;
 
+  postPatch = ''
+    substituteInPlace nwg_shell_config/locker.py --replace '/usr/share' $out/share
+    substituteInPlace nwg_shell_config/main_hyprland.py --replace '/usr/share' $out/share
+    substituteInPlace nwg_shell_config/main_sway.py --replace '/usr/share' $out/share
+    substituteInPlace nwg_shell_config/translate.py --replace '/usr/share' $out/share
+    substituteInPlace nwg_shell_config/tools.py --replace '/usr/share/backgrounds' $out/share/backgrounds
+    substituteInPlace nwg_shell_config/tools.py --replace '/usr/share/pixmaps' $out/share/pixmaps
+  '';
+
   postInstall = ''
     install -Dm444 nwg-shell-config.svg -t $out/share/icons/hicolor/scalable/apps
     install -Dm444 nwg-shell-config.desktop -t $out/share/applications
